@@ -1,4 +1,6 @@
+<%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"  %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +25,35 @@
             <li><span>요청방식</span><strong><%=request.getMethod() %></strong></li>
             <li><span>파라미터열</span><strong><%=request.getQueryString()%></strong></li>
             <li><span>요청주소</span><strong><%=request.getRequestURL()%></strong></li>
-            <li><span>요청URI</span><strong><%=request.getRequestURI()%></strong></li>
+            <li><span>요청 URI</span><strong><%=request.getRequestURI()%></strong></li>
             <li><span>서버이름</span><strong><%=request.getRemoteHost()%></strong></li>
-            <li><span>서버포트(원격)</span><strong><%=request.getServerPort()%></strong></li>
-            <li><span>서버포트(지역)</span><strong><%=request.getLocalPort()%></strong></li>
-            <li><span>현재 문서의 경로</span><strong><%=request.getLocalPort()%></strong></li>
+            <li><span>서버주소</span><strong><%=request.getRemoteAddr() %></strong></li>
+            <li><span>서버포트(원격)</span><strong><%=request.getRemotePort()%></strong></li>
+            <li><span>서버포트(지역)</span><strong><%=request.getServerPort()%></strong></li>
+            <li><span>현재 문서의 경로</span><strong><%=request.getContextPath()%></strong></li> <!--필수-->
             <li><span>헤더의 어셉트</span><strong><%=request.getHeader("Accept")%></strong></li>
             <li><span>헤더의 호스트</span><strong><%=request.getHeader("Host")%></strong></li>
             </ul>
+        <hr>
+        <br>
+        <hr>
+        <table class="table" id="tb1">
+            <caption><h2>헤더 정보</h2></caption>
+            <tbody>
+            <%-- .hasMoreElements 끝까지--%>
+            <%
+                Enumeration e = request.getHeaderNames();
+                while(e.hasMoreElements()){
+                    String hdName = (String) e.nextElement();
+
+            %>
+            <tr>
+                <td><%=hdName%></td>
+                <td><%=request.getHeader(hdName)%></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

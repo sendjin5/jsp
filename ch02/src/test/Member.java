@@ -1,4 +1,4 @@
-package com.edu.dto;
+package test;
 
 public class Member {
     private String id;
@@ -6,6 +6,7 @@ public class Member {
     private String name;
     private String email;
     private String tel;
+    private String regdate;
     private int point;
 
     public String getId() {
@@ -48,11 +49,39 @@ public class Member {
         this.tel = tel;
     }
 
+    public String getRegdate() {
+        return regdate;
+    }
+
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
+    }
+
     public int getPoint() {
         return point;
     }
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", regdate='" + regdate + '\'' +
+                ", point=" + point +
+                '}';
+    }
+
     public void setPoint(int point) {
         this.point = point;
+
     }
 }
+
+
+
+
+
+

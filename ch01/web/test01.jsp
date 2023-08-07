@@ -30,7 +30,7 @@
 <%-- 표현식(Expresstion) : 값을 가져와 출력, <%= %> 로 감싼다.  --%>
 <p>이름 : <%=getName() %></p>
 <p>주소 : <%=addr%></p>
-<a href="test01.jsp"></a>
+<a href="index.jsp"></a>
 
 
 </body>
