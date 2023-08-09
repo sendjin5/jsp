@@ -61,7 +61,7 @@
             background-repeat: no-repeat; background-position:center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
-        .page { clear:both; width: 100vw; height: 100vh; position:relative; }
+        .page { clear:both; width: 100vw; height: 100vw; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
@@ -100,12 +100,14 @@
     <header>
         <%@ include file ="../header.jsp"%>
     </header>
-    <div class="content" id="content">
+    <div class="contents" id="contents">
         <div class="breadcumb">
+            <p><a href="/">HOME</a> &gt; <a href="/board/boardList.jsp">공지사항</a> 공지사항 목록</p>
+
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class=" page_tit">공지사항 목록</h2>
+                <h2 class="page_tit">공지사항 목록</h2>
                 <hr>
                 <table class="tb1">
                     <thead>

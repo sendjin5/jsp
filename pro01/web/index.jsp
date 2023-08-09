@@ -32,7 +32,7 @@
             background-position:center center; background-size:cover; position:absolute;
             left: 0; top: 0; z-index:5; }
         .img_box li.active .bg_box { z-index:6; }
-        .img_box li.item1 .bg_box { background-image: url("./images/img_main_keyVisual01_summer.jpg"); }
+        .img_box li.item1 .bg_box { background-image: url("./images/pror.jpg"); }
         .img_box li.item2 .bg_box { background-image: url("./images/img_main_keyVisual03.jpg"); }
         .img_box li .vs_tit { position:absolute; top:180px; left:100px; z-index:10;
             font-weight: 300; font-size: 60px; line-height: 1.3; }

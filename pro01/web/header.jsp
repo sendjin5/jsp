@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 
 <%
-    String path1 = request.getContextPath();
+    String pathhdr = request.getContextPath();
     String sid = (String) session.getAttribute("id");
 %>
 
@@ -9,23 +9,23 @@
     <nav class="tnb">
         <ul class="menu">
             <% if(sid!=null) { %>
-            <li><a href="<%=path1 %>/member/logout.jsp">로그아웃</a></li>
-            <li><a href="<%=path1 %>/member/mypage.jsp">내정보</a></li>
-            <li><a href="<%=path1 %>/map.jsp">오시는길</a></li>
+            <li><a href="<%=pathhdr %>/member/logout.jsp">로그아웃</a></li>
+            <li><a href="<%=pathhdr %>/member/mypage.jsp">내정보</a></li>
+            <li><a href="<%=pathhdr %>/map.jsp">오시는길</a></li>
                 <% if(sid.equals("admin1")) {%>
-                <li><a href="<%=path1 %>/admin/index.jsp">관리자페이지</a></li>
+                <li><a href="<%=pathhdr %>/admin/index.jsp">관리자페이지</a></li>
                 <% } %>
             <% } else { %>
-                <li><a href="<%=path1 %>/member/login.jsp">로그인</a></li>
-                <li><a href="<%=path1 %>/member/term.jsp">회원가입</a></li>
+                <li><a href="<%=pathhdr %>/member/login.jsp">로그인</a></li>
+                <li><a href="<%=pathhdr %>/member/term.jsp">회원가입</a></li>
                 <li><a href="map.jsp">오시는길</a></li>
             <% } %>
         </ul>
     </nav>
 </div>
 <div class="hd_wrap">
-    <a href="<%=path1 %>" class="logo">
-        <img src="<%=path1 %>/images/chunjae1.png" alt="천재IT교육센터 로고타입">
+    <a href="<%=pathhdr %>" class="logo">
+        <img src="<%=pathhdr %>/images/chunjae1.png" alt="천재IT교육센터 로고타입">
     </a>
     <!-- nav.gnb>ul.menu>li.item$*5>a.dp1{메인$}+(ul.sub>li*4>a{서브$$}) -->
     <nav class="gnb">
@@ -60,7 +60,9 @@
             <li class="item4">
                 <a href="promotion.html" class="dp1">홍보</a>
                 <ul class="sub">
-                    <li><a href="<%=path1 %>/board/boardList.jsp">공지사항</a></li>
+                    <li><a href="<%=pathhdr %>/board/boardList.jsp">공지사항</a></li>
+                    <li><a href="<%=pathhdr %>/qna/qnaList.jsp">질문 및 답변</a></li>
+                    <li><a href="<%=pathhdr %>/fna/fnaList.jsp">자주쓰는 질문</a></li>
                     <li><a href="promotion.html#news">언론보도</a></li>
                     <li><a href="promotion.html#pr">광고</a></li>
                     <li><a href="promotion.html#sns">SNS</a></li>

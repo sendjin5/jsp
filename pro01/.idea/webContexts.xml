@@ -3,8 +3,10 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/web/Fna/fnaList.jsp" value="file://$PROJECT_DIR$/web/Fna" />
         <entry key="file://$PROJECT_DIR$/web/board/updateboard.jsp" value="file://$PROJECT_DIR$/web/board" />
         <entry key="file://$PROJECT_DIR$/web/member/term.jsp" value="file://$PROJECT_DIR$/web/member" />
+        <entry key="file://$PROJECT_DIR$/web/qna/qnaList.jsp" value="file://$PROJECT_DIR$/web/qna" />
       </map>
     </option>
   </component>

@@ -1,33 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-
-<%@ page import="com.chunjae.db.MariaDBCon" %>
-<%@ page import="com.chunjae.db.DBC" %>
-<%@ page import="com.chunjae.dto.Board" %>
-<%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="com.chunjae.db.*" %>
+<%@ page import="com.chunjae.vo.Qna" %>
 <%
     Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    int bno = Integer.parseInt(request.getParameter("bno"));
 
     DBC con = new MariaDBCon();
+
+    int qno = Integer.parseInt(request.getParameter("qno"));
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+
     conn = con.connect();
 
-
-    String sql = "select * from board where bno=?";
+    String sql = "update qna set title=?, content=? where qno=?";
     pstmt = conn.prepareStatement(sql);
-    pstmt.setInt(1, bno);
-    rs = pstmt.executeQuery();
-    Board bd = new Board();
+    pstmt.setString(1, title);
+    pstmt.setString(2, content);
+    pstmt.setInt(3, qno);
+    rs = pstmt.executeUpdate();
 
-    if(rs.next()) {
-        bd.setBno(rs.getInt("bno"));
-        bd.setTitle(rs.getString("title"));
-        bd.setContent(rs.getString("content"));
-        bd.setAuthor(rs.getString("author"));
-        bd.setRegdate(rs.getString("regdate"));
-        bd.setCnt(rs.getInt("cnt"));
+    Qna q = new Qna();
+
+    if(rs.next()){
+        q.setQno(rs.getInt("qno"));
+        q.setTitle(rs.getString("title"));
+        q.setContent(rs.getString("content"));
+        q.setAuthor(rs.getString("author"));
     }
     con.close(rs, pstmt, conn);
 
@@ -82,11 +83,10 @@
         .indata { display:inline-block; width:300px; height: 48px; line-height: 48px;
             text-indent:14px; font-size:18px; }
         .inbtn { display:block;  border-radius:100px;
-            min: width 30px; padding-left: 24px; padding-right: 24px; text-align: center;
-            line-height: 30px; background-color: #333; color:#fff; font-size: 15px;
-            float: left; margin: 10px;
-        }
-        .inbtn :last-child { float: right;}
+            min-width:140px; padding-left: 24px; padding-right: 24px; text-align: center;
+            line-height: 48px; background-color: #333; color:#fff; font-size: 18px; }
+        .inbtn:first-child { float:left; }
+        .inbtn:last-child { float:right; }
     </style>
 
     <link rel="stylesheet" href="../ft.css">
@@ -103,50 +103,35 @@
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">공지사항 상세보기</h2>
-                <hr>
-                <br><br><br><br><br>
-                <table class="tb1">
-                    <tbody>
-                    <tr>
-                        <th>글 번호</th>
-                        <td><%=bd.getBno() %></td>
-                    </tr>
-                    <tr>
-                        <th>글 제목</th>
-                        <td><%=bd.getTitle() %></td>
-                    </tr>
-                    <tr>
-                        <th>글 내용</th>
-                        <td><%=bd.getContent() %></td>
-                    </tr>
-                    <tr>
-                        <th>작성자</th>
-                        <td><%=bd.getAuthor() %></td>
-                    </tr>
-                    <tr>
-                        <th>작성일</th>
-                        <td><%=bd.getRegdate() %></td>
-                    </tr>
-                    <tr>
-                        <th>조회수</th>
-                        <td><%=bd.getCnt() %></td>
-                    </tr>
-                    </tbody>
-                    <tr>
-                        <td colspan="2">
-                            <% if(sid.equals("admin1") || sid.equals(bd.getAuthor())) { %>
-                            <a href="updateboard.jsp?bno=<%=bd.getBno()%>" class="inbtn">글 수정</a>
-                            <a href="delboard.jsp?bno=<%=bd.getBno()%>" class="inbtn">글 삭제</a>
-                            <% } %>
+                <h2 class="page_tit">Qna 수정하기</h2>
+                <form action="/qna/updateQnapro.jsp" method="post"></form>
+                    <table class="tb1">
+                        <tbody>
+                        <tr>
+                            <th>글 번호</th>
+                            <td><input type="text" name="qno" is="qno" value="<%=q.getQno() %>" readonly><%=q.getQno() %></td>
+                        </tr>
+                        <tr>
+                            <th>글 제목</th>
+                            <td><input type="text" name="title" is="title" class="indata" value="<%=q.getTitle() %>" ><%=q.getTitle() %></td>
 
+                        </tr>
+                        <tr>
+                            <th>글 내용</th>
+                            <td><textarea rows="10" cols="80" name="content" id="content" class="indata"><%=q.getContent() %></textarea></td>
 
-                            <a href="boardList.jsp" class="inbtn">글 목록</a>
-
-                        </td>
-                    </tr>
-                </table>
-
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="/qna/qnaList.jsp" class="inbtn">글 목록</a>
+                                <% if(sid.equals("admin") || sid.equals(q.getAuthor())) { %>
+                                <input type="submit" value="글수정" class="inbtn">
+                                <a href="/qna/delQna.jsp?qno=<%=q.getQno() %>" class="inbtn">글 삭제</a>
+                                <% } %>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
             </div>
         </section>

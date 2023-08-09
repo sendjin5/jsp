@@ -223,7 +223,7 @@
             </div>
         <div class="btn_fr">
             <input type="checkbox" name="ck_item1" id="ck_item">
-            <label for="ck_item1">약관의 동의</label><br><br>
+            <label for="ck_item">약관의 동의</label><br><br>
             <button type="button" id="in_btn1" class="inbtn">다음단계
             </button>
         </div>

@@ -1,15 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 
 <%
-    String path = request.getContextPath();
+    String pathhd = request.getContextPath();
     request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html; charset=UTF-8");
     response.setCharacterEncoding("UTF-8");
-
 %>
-<p>스타일 초기화 전까지 (파비콘 끝까지</p>
 
-
+<!--<p>스타일 초기화 전까지 (파비콘 끝까지)</p>-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Author" content="천재교육 콘텐츠 제작팀">
 <meta http-equiv="Publisher" content="천재교육 김기태">
@@ -52,17 +50,17 @@
 <!-- 파비콘 설정 -->
 <!-- 16x16, 24x24, 32x32, 48x48, 64x64, 96x96, 114x114, 128x128, 256x256 등을 활용-->
 <!-- 표준 파비콘 -->
-<link rel="shortcut icon" href="<%=path %>/images/logo.ico">
+<link rel="shortcut icon" href="<%=pathhd %>/images/logo.ico">
 <!-- 애플 계열 모바일 -->
-<link rel="apple-touch-icon-precomposed" href="<%=path %>/images/logo_64.png">
+<link rel="apple-touch-icon-precomposed" href="<%=pathhd %>/images/logo_64.png">
 <!-- IE 계열 브라우저 -->
 <meta name="msapplication-TileColor" content="#FFFFFF">
-<meta name="msapplication-TileImage" content="<%=path %>/images/logo_48.png">
+<meta name="msapplication-TileImage" content="<%=pathhd %>/images/logo_48.png">
 <!-- 파이어폭스, 오페라, 또는 구형 크롬/사파리 -->
-<link rel="icon" href="<%=path %>/images/logo_16.png" sizes="16x16">
-<link rel="icon" href="<%=path %>/logo_32.png" sizes="32x32">
-<link rel="icon" href="<%=path %>/logo_48.png" sizes="48x48">
-<link rel="icon" href="<%=path %>/logo_64.png" sizes="64x64">
+<link rel="icon" href="<%=pathhd %>/images/logo_16.png" sizes="16x16">
+<link rel="icon" href="<%=pathhd %>/logo_32.png" sizes="32x32">
+<link rel="icon" href="<%=pathhd %>/logo_48.png" sizes="48x48">
+<link rel="icon" href="<%=pathhd %>/logo_64.png" sizes="64x64">
 <script>
     //불펌 방지
     document.oncontextmenu = function (){return false;}     //오른쪽 마우스 막기

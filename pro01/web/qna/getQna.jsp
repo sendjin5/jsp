@@ -1,33 +1,39 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@page import="java.sql.*" %>
+<%@page import="com.chunjae.db.*" %>
+<%@page import="com.chunjae.vo.*" %>
+<%@page import="com.chunjae.db.DBC" %>
 
-<%@ page import="com.chunjae.db.MariaDBCon" %>
-<%@ page import="com.chunjae.db.DBC" %>
-<%@ page import="com.chunjae.dto.Board" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.sql.*" %>
 <%
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html; charset=UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
     Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    int bno = Integer.parseInt(request.getParameter("bno"));
-
     DBC con = new MariaDBCon();
+    int qno = Integer.parseInt(request.getParameter("qno"));
+
     conn = con.connect();
-
-
-    String sql = "select * from board where bno=?";
+    String sql ="select  * from qna where qno=?";
     pstmt = conn.prepareStatement(sql);
-    pstmt.setInt(1, bno);
+    pstmt.setInt(1, qno);
     rs = pstmt.executeQuery();
-    Board bd = new Board();
+    Qna q = new Qna();
 
-    if(rs.next()) {
-        bd.setBno(rs.getInt("bno"));
-        bd.setTitle(rs.getString("title"));
-        bd.setContent(rs.getString("content"));
-        bd.setAuthor(rs.getString("author"));
-        bd.setRegdate(rs.getString("regdate"));
-        bd.setCnt(rs.getInt("cnt"));
+    if(rs.next()){
+        q.setQno(rs.getInt("qno"));
+        q.setTitle(rs.getString("title"));
+        q.setContent(rs.getString("content"));
+        q.setAuthor(rs.getString("author"));
+        q.setResdate(rs.getString("resdate"));
+        q.setCnt(rs.getInt("cnt"));
+        q.setLev(rs.getInt("lev"));
+        q.setPar(rs.getInt("Par"));
+
+
+
     }
     con.close(rs, pstmt, conn);
 
@@ -37,9 +43,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>질의응답 상세보기</title>
 
-    <%@ include file ="../head.jsp"%>
+    <%@include file="../head.jsp"%>
+
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
 
@@ -71,90 +78,93 @@
         .breadcrumb a { color:#fff; }
         .frm { clear:both; width:1200px; margin:0 auto; padding-top: 80px; }
 
-        .tb1 { width:500px; margin:50px auto; }
-        .tb1 th { width:180px; line-height:32px; padding-top:8px; padding-bottom:8px;
+        .tb1 { width:600px; height: 50px; margin: 400px auto; }
+        .tb1 th { width:150px; line-height:32px; padding-top:8px; padding-bottom:8px;
             border-top:1px solid #333; border-bottom:1px solid #333;
             background-color:deepskyblue; color:#fff; }
-        .tb1 td { width:310px; line-height:32px; padding-top:8px; padding-bottom:8px;
+        .tb1 td { width:450px; line-height:32px; padding-top:8px; padding-bottom:8px;
             border-bottom:1px solid #333;
             padding-left: 14px; border-top:1px solid #333; }
 
-        .indata { display:inline-block; width:300px; height: 48px; line-height: 48px;
-            text-indent:14px; font-size:18px; }
+
         .inbtn { display:block;  border-radius:100px;
-            min: width 30px; padding-left: 24px; padding-right: 24px; text-align: center;
+            min: width 50px; padding-left: 24px; padding-right: 24px; text-align: center;
             line-height: 30px; background-color: #333; color:#fff; font-size: 15px;
             float: left; margin: 10px;
         }
-        .inbtn :last-child { float: right;}
     </style>
-
     <link rel="stylesheet" href="../ft.css">
 
 </head>
 <body>
 <div class="container">
-
     <header class="hd" id="hd">
-        <%@ include file ="../header.jsp"%>
+
+        <%@include file="../header.jsp"%>
+
     </header>
     <div class="contents" id="contents">
         <div class="breadcumb">
+            <p><a href="/">HOME</a> &gt; <a href="/qna/getQna.jsp">질의응답 글쓰기</a>글쓰기</p>
         </div>
-        <section class="page" id="page1">
-            <div class="page_wrap">
-                <h2 class="page_tit">공지사항 상세보기</h2>
-                <hr>
-                <br><br><br><br><br>
+        <section class="page">
+            <div class="page_wrap" id="page_wrap">
+                <h2> QNA 상세보기 </h2>
                 <table class="tb1">
                     <tbody>
                     <tr>
-                        <th>글 번호</th>
-                        <td><%=bd.getBno() %></td>
+                        <th>글번호</th>
+                        <td><%=q.getQno()%></td>
                     </tr>
                     <tr>
-                        <th>글 제목</th>
-                        <td><%=bd.getTitle() %></td>
+                        <th>글제목</th>
+                        <td> <%=q.getTitle()%></td>
                     </tr>
                     <tr>
-                        <th>글 내용</th>
-                        <td><%=bd.getContent() %></td>
+                        <th>글내용</th>
+                        <td><%=q.getContent()%></td>
                     </tr>
                     <tr>
                         <th>작성자</th>
-                        <td><%=bd.getAuthor() %></td>
+                        <td><%=q.getAuthor()%></td>
                     </tr>
                     <tr>
-                        <th>작성일</th>
-                        <td><%=bd.getRegdate() %></td>
+                        <th>작성시간</th>
+                        <td><%=q.getResdate()%></td>
                     </tr>
                     <tr>
                         <th>조회수</th>
-                        <td><%=bd.getCnt() %></td>
+                        <td><%=q.getCnt()%></td>
                     </tr>
                     </tbody>
                     <tr>
                         <td colspan="2">
-                            <% if(sid.equals("admin1") || sid.equals(bd.getAuthor())) { %>
-                            <a href="updateboard.jsp?bno=<%=bd.getBno()%>" class="inbtn">글 수정</a>
-                            <a href="delboard.jsp?bno=<%=bd.getBno()%>" class="inbtn">글 삭제</a>
+                            <% if(q.getLev()==0) { %>
+                            <% if(sid !=null) { %>
+                               <a href="/qna/addQna.jsp?lev=1&par=<%=q.getQno()%>" class="inbtn">답변하기</a>
+                            <% } if (sid != null && (sid.equals(q.getAuthor()) || sid.equals("admin1"))) { %>
+                               <a href="/qna/updateQna.jsp?qno=<%=q.getQno()%>" class="inbtn">수정하기</a>
+                               <a href="/qna/delQna.jsp?qno=<%=q.getQno()%>&lev=0&par=<%=q.getPar()%>" class="inbtn">삭제하기</a>
                             <% } %>
-
-
-                            <a href="boardList.jsp" class="inbtn">글 목록</a>
+                            <% } else { %>
+                            <%  if (sid != null && (sid.equals(q.getAuthor()) || sid.equals("admin1"))) { %>
+                                <a href="/qna/updateQna.jsp?qno=<%=q.getQno()%>" class="inbtn">수정하기</a>
+                                <a href="/qna/delQna.jsp?qno=<%=q.getQno()%>&lev=1&par=<%=q.getPar()%>" class="inbtn">삭제하기</a>
+                            <% } %>
+                            <% } %>
+                              <a href="/qna/qnaList.jsp" class="inbtn">목록으로 돌아가기</a>
 
                         </td>
                     </tr>
                 </table>
-
-
             </div>
-        </section>
-        <footer class="ft" id="ft">
-            <%@ include file ="../footer.jsp"%>
 
-        </footer>
+        </section>
     </div>
+</div>
+<footer class="ft" id="ft">
+
+    <%@include file="../footer.jsp"%>
+</footer>
 </body>
 </html>
-
