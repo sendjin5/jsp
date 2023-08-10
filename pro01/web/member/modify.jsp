@@ -8,15 +8,14 @@
     Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    Member mem = new Member();
     DBC con = new MariaDBCon();
     conn = con.connect();
-    if(conn !=null){
-        System.out.println("DB 연결성공");
-    }
+
+    Member mem = new Member();
+
     String pw = "";
     try {
-        String sql = "select * from member where id=?";
+        String sql = "select * from member2 where id=?";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, id);
                 rs = pstmt.executeQuery();

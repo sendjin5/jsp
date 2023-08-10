@@ -63,6 +63,8 @@
                     <li><a href="<%=pathhdr %>/board/boardList.jsp">공지사항</a></li>
                     <li><a href="<%=pathhdr %>/qna/qnaList.jsp">질문 및 답변</a></li>
                     <li><a href="<%=pathhdr %>/fna/fnaList.jsp">자주쓰는 질문</a></li>
+                    <li><a href="<%=pathhdr %>/dat/datList.jsp">댓글게시판</a></li>
+                    <li><a href="<%=pathhdr %>/fna/online.jsp">온라인게시판</a></li>
                     <li><a href="promotion.html#news">언론보도</a></li>
                     <li><a href="promotion.html#pr">광고</a></li>
                     <li><a href="promotion.html#sns">SNS</a></li>
