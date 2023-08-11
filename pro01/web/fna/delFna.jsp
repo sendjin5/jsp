@@ -19,7 +19,6 @@
     pstmt.setInt(1, qno);
     int cnt = pstmt.executeUpdate();
 
-
     if (cnt > 0) {
         if(lev==0) {
             pstmt.close();

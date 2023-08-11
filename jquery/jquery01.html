@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+     <script src="/jquery.js"></script>
+     <script>
+        
+        //$(document).ready(function(){
+         //   $("#kk").text("이게 Jquery 입니다.");
+     //   });
+     </script>
+</head>
+<body>
+        <h2 id="kk"></h2>
+        <h2 id="ss"></h2>
+        <h2 id="hh"></h2>
+        <lst>
+            <li>아이템1</li>
+            <li>아이템2</li>
+            <li>아이템3</li>
+            <li>아이템4</li>
+        </lst>
+
+        <button id="btn">추가입니다.</button>
+
+</body>
+<script>
+            $(function(){
+            $("#kk").text("이게 콜라 입니다.");})
+
+            $(function(){
+                $("#ss").html("<span style:'pink'>사이다입니다.</span>")}
+            )
+
+            $(function(){
+                $("#hh").click($(this).text());
+            });
+            var sw = true;
+            $("#btn").click(function(){
+                if(sw){
+                    $("hh").text("오렌지 환타가 됩니다.");
+                } else { $("hh").text("파인애플 환타입니다.")
+
+                } sw=!sw;
+            })
+            var len = $(".lst li").length + 1;
+            $(".lst").append("<li>아이템"+len+"</li>");
+            $(".lst li").css("color", "blue")
+            $(".lst li:last-child").css("color", "red");
+
+            
+</script>
+</html>

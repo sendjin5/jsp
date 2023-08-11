@@ -82,12 +82,16 @@
         .tb1 th { width:1000px; line-height:32px; padding-top:8px; padding-bottom:8px;
             border-top:1px solid black; border-bottom:1px solid black;
             background-color:deepskyblue; color:#fff; }
+        .tb1 th:nth-child(4) {border-top: hidden; border-bottom: none; background-color: white;}
         .tb1 td { width:1000px; line-height:32px; padding-top:8px; padding-bottom:8px;
             border-bottom:1px solid #333;
             padding-left: 14px; border-top:1px solid #333; }
-        .tb1 .item1 { width:10%; text-align: center; }
-        .tb1 .item2 { width:65%; padding-left: 50px}
+        .tb1 td:nth-child(4) { display:block;  border-radius:100px; border-top: hidden; border-bottom: none; background-color: white;}
+        .tb1 .item1 { width:5%; text-align: center; }
+        .tb1 .item2 { width:60%; padding-left: 50px}
         .tb1 .item3 { width:25%; text-align: center; }
+        .tb1 .item4 { width:10%; text-align: center; }
+
         .tet {width:850px; line-height:32px; padding-top:8px; padding-bottom:8px; float: left;  }
         .tet2 {width:150px; line-height:60px; padding-top:8px; padding-bottom:8px;float: right;}
         .inbtn { display:block;  border-radius:100px;
@@ -114,18 +118,18 @@
                 <h2 class="page_tit">자유게시판</h2>
                 <hr>
                 <table class="tb1">
-
                     <thead>
                         <th class="item1">아이디</th>
                         <th class="item2">글내용</th>
                         <th class="item3">작성일</th>
+                        <th class="item4"></th>
                     </thead>
                     <tbody>
                     <% if(sid!=null) { %>
                     <form action="datListpro.jsp">
                         <input type="hidden" name="id" id="id" class="indata" value="<%=sid%>" readonly>
                         <tr>
-                            <td colspan="2">
+                            <td colspan="3">
                                 <textarea rows="1" cols="50" name="content" id="content" class="tet" maxlength="50" required placeholder="댓글내용" autofocus></textarea></td>
                             <td><input type="submit" value="등록" class="tet2"> </td>
                         </tr>
@@ -133,20 +137,19 @@
                     <% } %>
                     <% for(Dat d:datList) { %>
                     <tr>
-                        <td class="item1"><%=d.getId()%></td>
-                        <td class="item2"><%=d.getContent()%></td>
-                        <td class="item3"><%=d.getResdate()%></td>
+                        <td class="item1" name="ddf"><%=d.getId()%></td>
+                        <td class="item2" name="ddf"><%=d.getContent()%></td>
+                        <td class="item3" name="ddf"><%=d.getResdate()%></td>
+                        <% if(sid!=null && (sid.equals("admin1") || sid.equals(d.getId()))) {%>
+                        <td>
+                            <a href="deldat.jsp?dno=<%=d.getDno()%>">삭제하기</a>
+                        </td>
+                        <% } %>
                     </tr>
                     <% } %>
                     </tbody>
                 </table>
-                <% if(sid!=null) { %>
-                    <tr>
-                        <td>
-                            <a href="deldat.jsp" class="inbtn">내 글 삭제하기</a>
-                        </td>
-                    </tr>
-                <% } %>
+
             </div>
         </section>
 
