@@ -1,26 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.chunjae.db.DBC" %>
-<%@ page import="com.chunjae.db.MariaDBCon" %>
+<%@ page import="com.chunjae.db.*" %>
 <%
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
     String pw2 = request.getParameter("pw2");
     String re_pw = request.getParameter("re_pw");
-    String tel = request.getParameter("tel");
-    String email = request.getParameter("email");
     String apw = "";
-
     if(pw2.equals(re_pw)){
         apw = pw;
     } else {
         apw = re_pw;
     }
+
+    String tel = request.getParameter("tel");
+    String email = request.getParameter("email");
+    int cnt = 0;
     Connection conn = null;
     PreparedStatement pstmt = null;
-    Statement stmt = null;
     ResultSet rs = null;
-    int cnt =0;
+
     DBC con = new MariaDBCon();
     conn = con.connect();
     if(conn != null){
@@ -28,7 +27,7 @@
     }
 
     try {
-        String sql = "update member set pw=?, email=?, tel=? where id=? ;
+        String sql = "update member set pw=?, email=?, tel=? where id=?";
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, apw);
         pstmt.setString(2, email);
@@ -37,7 +36,6 @@
         cnt = pstmt.executeUpdate();
         if(cnt>0){
             response.sendRedirect("/");
-
         } else {
             response.sendRedirect("/member/modify.jsp");
         }

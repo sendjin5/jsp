@@ -11,10 +11,21 @@
     String id = request.getParameter("id");
 %>
 <div class="container">
-    <label for="id">아이디</label>
-    <input type="text" name="id" id="id" value="<%=id %>" readonly>
-    <a href="idload.jsp?id=<%=id %>">아이디 중복 검사</a>
-
+    <form name="child" action="idload.jsp" method="post" onsubmit="return invalidCheck(this)">
+        <label for="id">아이디</label>
+        <input type="text" name="id" id="id" value="<%=id %>" placeholder="12글자 이내">
+        <input type="submit" value="아이디 중복 검사">
+    </form>
+    <script>
+    function invalidCheck(f){
+        var id = f.id.value;
+        if(id.length>12){
+            alert("아이디의 글자수는 12글자 이내입니다.");
+            f.id.focus();
+            return;
+        }
+    }
+    </script>
 </div>
 </body>
 </html>

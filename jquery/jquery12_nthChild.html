@@ -21,11 +21,17 @@
     <script>
     $(document).ready(function(){
         //li중에서 홀수 번째 자식 요소마다 글자색을 파랑으로 함.
-        
+        $("li:nth-child(2n-1)").css("color", "blue");
+        //$("li:nth-child(ood)").css("color", "blue");
+
         
         //li중에서 짝수 번째 자식 요소마다 글자색을 빨강으로 함.
+        $("li:nth-child(2n)").css("color", "red");
+        //$("li:nth-child(even)").css("color", "red");
+
         
         //li중에서 2번 째 요소마다 배경색을 하늘색으로 하며, 2nd~! 텍스트를 추가
+        $("li:nth-child(2n)").css("background-color", "sky").append("2nd~!");
         
     });    
     </script>

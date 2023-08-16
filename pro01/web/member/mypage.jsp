@@ -2,26 +2,23 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.chunjae.db.*" %>
 <%@ page import="com.chunjae.dto.*" %>
-<!DOCTYPE html>
-<html lang="en">
 <%
-    String id = (String) session.getAttribute("id");
+    String id = (String) session.getAttribute("id");    //세션의 id 불러오기
     Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    Member mem = new Member();
+    Member mem = new Member();      //마이페이지에 담길 회원 객체 생성
     DBC con = new MariaDBCon();
     conn = con.connect();
-    if(conn !=null){
-        System.out.println("DB 연결성공");
+    if(conn != null){
+        System.out.println("DB 연결 성공");
     }
-
     try {
-        String sql = "select * from member where id=?";
+        String sql = "select * from member where id=?"; //DB에서 로그인한 회원의 정보를 검색하는 SQL 구문
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, id);
         rs = pstmt.executeQuery();
-        if (rs.next()) {
+        if(rs.next()){ //해당 회원의 정보를 DB에서 로딩하여 회원 객체의 필드의 값으로 저장
             mem.setId(rs.getString("id"));
             mem.setPw(rs.getString("pw"));
             mem.setName(rs.getString("name"));
@@ -31,14 +28,22 @@
         } else {
             response.sendRedirect("/member/login.jsp");
         }
-    } catch (SQLException e) {
-        System.out.println("SQL 구문이 안된다.");
-
-
+    } catch(SQLException e) {
+        System.out.println("SQL 구문이 처리되지 못했습니다.");
+    } finally {
+        con.close(rs, pstmt, conn);
     }
 %>
+<%
+    String path0 = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
+    <!-- /web/member/login.jsp -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
     <%@ include file="../head.jsp" %>
 
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
@@ -52,7 +57,6 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="../hd.css">
-
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height:100vh;
@@ -73,68 +77,87 @@
         .breadcrumb a { color:#fff; }
         .frm { clear:both; width:1200px; margin:0 auto; padding-top: 80px; }
 
-        .tb1 { width:500px; line-height:24px; margin:0 auto; }
-        .tb1 tr { width:300px; line-height: 60px; padding-top:24px; padding-bottom:24px;
-            border-top: 1px solid #333; border-bottom: 1px solid #333; background-color: gray; color:#fff}
+        .tb1 { width:500px; margin:50px auto; }
+        .tb1 th { width:180px; line-height:32px; padding-top:8px; padding-bottom:8px;
+        border-top:1px solid #333; border-bottom:1px solid #333;
+            background-color:deepskyblue; color:#fff; }
+        .tb1 td { width:310px; line-height:32px; padding-top:8px; padding-bottom:8px;
+            border-bottom:1px solid #333;
+            padding-left: 14px; border-top:1px solid #333; }
 
-
-        .inbtn { display:block;  border-radius: 30px;
+        .indata { display:inline-block; width: 500px; height: 48px; line-height: 48px;
+            text-indent:14px; font-size:18px; }
+        .inbtn { display:block;  border-radius:100px;
             min-width:140px; padding-left: 24px; padding-right: 24px; text-align: center;
-            line-height: 60px; background-color: #333; color:#fff; font-size: 18px; }
+            line-height: 48px; background-color: #333; color:#fff; font-size: 18px; }
         .inbtn:first-child { float:left; }
         .inbtn:last-child { float:right; }
     </style>
 
     <link rel="stylesheet" href="../ft.css">
-    <title>마이페이지</title>
 </head>
 <body>
+<div class="wrap">
+    <header class="hd" id="hd">
+        <%@ include file="../header.jsp" %>
+    </header>
     <div class="contents" id="contents">
         <div class="breadcrumb">
-            <p><a href="">HOME</a> &gt; <span>내정보 수정</span></p>
+            <p><a href="">HOME</a> &gt; <span>마이페이지</span></p>
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">내 정보 수정</h2>
-                    <table class="tb1">
-                        <tbody>
-                       <tr>
-                           <th>아이디</th><
-                           <td><%=mem.getId() %></td>
-                       </tr>
-                       <tr>
-                           <th>비밀번호</th><
-                           <td><%=mem.getPw() %></td>
-                       </tr>
-                       <tr>
-                           <th>이름</th><
-                          <td><%=mem.getName() %></td>
-                       </tr>
-                       <tr>
-                           <th>이메일</th><
-                           <td>><%=mem.getEmail() %></td>
-                       </tr>
-                       <tr>
-                           <th>전화번호</th><
-                           <td><%=mem.getTel() %></td>
-                       </tr>
-                       <tr>
-                           <th>포인트</th><
-                           <td><%=mem.getPoint() %></td>
-                       </tr>
-                        <tr>
-                            <td colspan="2">
-                                <a href="/member/modify.jsp" class="inbtn"> 회원정보수정</a>
-                                <a href="/" class="inbtn"> 메인으로</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <h2 class="page_tit">나의 정보</h2>
+                <hr>
+                <table class="tb1">
+                    <tbody>
+                    <tr>
+                        <th>아이디</th>
+                        <td><%=mem.getId() %></td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td>
+                            <%=mem.getPw().substring(0, 2) %>
+                            <% for(int i=0;i<mem.getPw().length()-2;i++){
+                                out.print("*");
+                            } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td><%=mem.getName() %></td>
+                    </tr>
+                    <tr>
+                        <th>전화번호</th>
+                        <td><%=mem.getId() %></td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td><%=mem.getEmail() %></td>
+                    </tr>
+                    <tr>
+                        <th>포인트</th>
+                        <td><%=mem.getPoint() %></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="colspan">
+                            <a href="/member/modify.jsp" class="inbtn">회원정보수정</a>
+                            <a href="/" class="inbtn">메인으로</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    탈퇴시에는 온라인 상담을 이용하시기 바랍니다.<br>
+
+                </p>
             </div>
         </section>
     </div>
     <footer class="ft" id="ft">
         <%@ include file="../footer.jsp" %>
     </footer>
+</div>
 </body>
 </html>

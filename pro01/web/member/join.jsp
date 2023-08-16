@@ -1,13 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-
-
-
-<%
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
-
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +41,7 @@
 
         .tb1 { width:500px; margin:50px auto; }
         .tb1 th { width:180px; line-height:32px; padding-top:8px; padding-bottom:8px;
-            border-top:1px solid #333; border-bottom:1px solid #333;
+        border-top:1px solid #333; border-bottom:1px solid #333;
             background-color:deepskyblue; color:#fff; }
         .tb1 td { width:310px; line-height:32px; padding-top:8px; padding-bottom:8px;
             border-bottom:1px solid #333;
@@ -125,34 +116,34 @@
                     </table>
                 </form>
                 <script>
-                    function inform(frm){
-                        var ck_item = frm.ck_item;
-                        //var ck_item = document.getElementById("ck_item");
-                        if(ck_item.value!="yes"){
-                            alert("아이디 중복 검사를 진행하시기 바랍니다.");
-                            frm.id.focus();
-                            return;
-                        }
-                        var pw = frm.pw;
-                        var pw2 = frm.pw2;
-                        if(pw!=pw2){
-                            alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
-                            pw.focus();
-                            return;
-                        }
+                function inform(frm){
+                    var ck_item = frm.ck_item;
+                    //var ck_item = document.getElementById("ck_item");
+                    if(ck_item.value!="yes"){
+                        alert("아이디 중복 검사를 진행하시기 바랍니다.");
+                        frm.id.focus();
+                        return;
                     }
-                    function idcheck(){
-                        var child;
-                        var id = document.getElementById("id");
-                        if(id.value!="") {
-                            child = window.open("idcheck.jsp?id="+id.value, "child", "width=400, height=300");
-                            return;
-                        } else {
-                            alert("아이디 입력란에 아이디를 입력하고, 진행하시기 바랍니다.");
-                            id.focus();
-                            return;
-                        }
+                    var pw = frm.pw;
+                    var pw2 = frm.pw2;
+                    if(pw!=pw2){
+                        alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
+                        pw.focus();
+                        return;
                     }
+                }
+                function idcheck(){
+                    var child;
+                    var id = document.getElementById("id");
+                    if(id.value!="") {
+                        child = window.open("idcheck.jsp?id="+id.value, "child", "width=400, height=300");
+                        return;
+                    } else {
+                        alert("아이디 입력란에 아이디를 입력하고, 진행하시기 바랍니다.");
+                        id.focus();
+                        return;
+                    }
+                }
                 </script>
             </div>
         </section>

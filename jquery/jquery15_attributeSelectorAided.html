@@ -27,16 +27,25 @@
     <script>
     $(document).ready(function(){
         //아이디가 imgList인 내부 요소 img의 너비를 200px, 높이를 300px로 변경
-        
+        $("#imgList img").css("width", "200px").css("height", "300px");
+        //$("#imgList img").width(200).height(300);
+
         //아이디가 imgList인 내부 요소 img의 src속성이 jpg인 경우 5px 빨간색 테두리
+        $("#imgList img[src$='jpg']").css("border", "5px solid red");
         
         //아이디가 imgList인 내부 요소 img의 src속성이 png인 경우 5px 초록색 테두리
+        $("#imgList img[src$='png']").css("border", "5px solid green");
         
         //아이디가 imgList인 내부 요소 img의 src속성이 gif인 경우 5px 파란색 테두리
+        $("#imgList img[src$='gif']").css("border", "5px solid blue");
        
         //아이디가 gnb인 내부 요소인 a 요소의 href속성에 .do가 포함되어 있는 요소만 
         //아이디가 quick안의 클래스 menu의 내부 요소로 추가
+        //$("#quick .menu").append("<li>" + $("#gnb a[href*='.do']").html() + "</li>");
+        $("#gnb a[href*='.do']").html() + "</li>");
        
+
+        //파일 받기
     });    
     </script>
 </body>
