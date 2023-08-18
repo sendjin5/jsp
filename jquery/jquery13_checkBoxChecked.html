@@ -26,19 +26,15 @@
     <script>
     $(document).ready(function(){
         //체크박스의 다음 요소 span에 배경색을 빨강으로 설정
-            $("input:checkbox + span").css("background-color", "red");
-
-            $("input:checkbox").click(function(){
+        $("input:checkbox + span").css("background-color","red");
+        $("input:checked + span").css("color","green");    
+        $("input:not(:checked) + span").css("color","white");
+        $("input:checkbox").click(function(){
             //체크박스가 체크되면, 그 다음 요소 span의 글자색을 그린으로 변경
-            $("input:checked + span").css("color", "green");
-
-          
-            
+            $("input:checked + span").css("color","green");
             //체크박스가 체크 해제되면, 그 다음 요소 span의 글자색을 흰색으로 변경
-            $("input:not(:checked) + span").css("color", "white");
-        });
-
-
+            $("input:not(:checked) + span").css("color","white");
+        });    
         //이벤트트리거 : 이벤트를 자동으로 강제 발생  
         //$(선택자).이벤트메서드(function(){ 이벤트내용; }).이벤트메서드()
     });    

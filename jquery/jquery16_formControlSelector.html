@@ -38,46 +38,45 @@
     <div id="msg"></div>
     <script>
     $(document).ready(function(){
-   //아이디, 이름, 암호, 암호확인을 입력하고, #regBtn을 누르면
-   //데이터의 유효성을 검사하도록 하고, 그 데이터를 ajaxJoin.do로
-   //비동기방식으로 보내도록 하시오.
-   var pass = "no";
-   var source;
-    $("#regbtn").click(function(){
-                $(":text, :password").each(function(){
-                    if($(this).val()==""){
-                        alert("입력 데이터가 비었네요?");
-                        $(this).focus();
-                        return false;
-                    }else{
-                        pass = "yes";
-                    }
+        //아이디, 이름, 암호, 암호확인을 입력하고, #regBtn을 누르면
+        //데이터의 유효성을 검사하도록 하고, 그 데이터를 ajaxJoin.do로
+        //비동기방식으로 보내도록 하시오.
+        var pass = "no";
+        var source;
+        $("#regBtn").click(function(){
+            $(":text, :password").each(function(){
+                if($(this).val()==""){
+                    alert("입력 데이터가 비어 있습니다.");
+                    $(this).focus();
+                    return false;
+                } else {
+                    pass = "yes";
+                }
             });
-            if($("pwdConfig").val()!=$("#pwd").val()){
+            if($("#pwdConfirm").val()!=$("#pwd").val()){
                 alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
                 $("#pwd").focus();
-                return falus;
+                return false;
             }
-    });
-
-    function confirm(){
-        if(pass=="yes"){
-            source = {"id":$("#userId").val(),"pw":$("#pwd").val(), "name":$("#username").val()}
+            confirm();
+        });
+        function confirm(){
+            if(pass=="yes"){
+                source = { "id":$("#userId").val(), "pw":$("#pwd").val(), "name":$("#userName").val() };
                 $.ajax({
                     url:"/JoinPro.do?member="+source,
                     type:"get",
-                    dataType:"json", //자바스크립트 객체를 json이라 함
-                    success:function(data){
-                        $("#msg").text(data);},
-                    error:function(data, status, err){ 
-                        alert(data + "가" +err+"로 인하여 정상적으로 처리되지 못했습니다.");
+                    dataType:"json",
+                    success:function(data){ $("#msg").text(data); },
+                    error:function(data, status, err){
+                        alert(data+"가 "+err+"로 인하여 정상적으로 처리되지 못했습니다.");
                     }
-        });
+                });
+            }
         }
-    }
-     $("#userName").click(function(){
-        $(this).val("");
-     });
+        $("#userName").click(function(){
+            $(this).val("");
+        });
     });    
     </script>
 </body>
