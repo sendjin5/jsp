@@ -19,6 +19,18 @@
     <script>
     $(document).ready(function(){
         //+를 누르면 이미지(#imgTarget)를 두 배 확대, -를 누르면 두 배 축소
+        $("#msgBox").keypress(function(event){ // +: 43, -: 45
+            $("#result").text(event.which); //text(String.fromCharCode(event.which));
+            if(event.which == 43){
+                $("#imgTarget").width($("#imgTarget").width()*2);
+            }else if(event.which == 45){
+                $("#imgTarget").width($("#imgTarget").width()/2);
+            
+            } else{
+                alert("키 입력이 안되었습니다.")
+        
+        };
+    });
 
     });
     </script>
@@ -32,7 +44,7 @@
                 <input id="msgBox" autofocus />
             </div>
             <h3 id="result"></h3>
-            <img src="dy3.jpg" alt="도연" id="imgTarget">
+            <img src="/img/5.jpg" alt="푸키" id="imgTarget">
         </article>
     </section>
     <br><hr><br>
