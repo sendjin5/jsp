@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI 아코디언</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/start/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <style>
+  body { font-family: Arial, Helvetica, sans-serif; }
+  table { font-size: 1em; }
+  .title { color:#11c9fc; font-size:48px;  text-align: center; }
+  .ui-draggable, .ui-droppable { background-position: top; }
+  </style>  
+  <script>
+    $(function(){
+        $(".widget").accordion({collapsible:true});
+    })
+  </script>
+</head>
+<body>
+<h2 class="title">아코디언 또는 컬랩시블</h2>
+<hr>
+<div class="widget">
+  <h3>싱글톤 패턴</h3>
+  <div>
+    <p>
+      애플리케이션이 시작될 때 어떤 클래스가 최초 한번만 메모리를 할당하고 그 메모리에
+      인스턴스를 만들어 사용하는 디자인 패턴으로 생성자가 여러 차례 호출되더라도 실제로
+      생성되는 객체는 하나이고, 최초 생성 이후에 호출된 생성자는 생성한 객체를 반환합니다.
+      스프링에서는 클래스 자체에 의해서 생성하지 않고, 스프링 컨테이너에 의해 구현이 됩니다.
+    </p>
+  </div>
+  <h3>템플릿 메소드 패턴</h3>
+  <div>
+    <p>
+    슈퍼클래스에 기본적인 로직의 흐름을 작성하고, 일부 변경이 필요한 부분은 서브클래스에서 추상메소드로
+    오버라이딩하여 사용할 수 있는 형태로 서브클래스에서 필요에 맞게 이를 구현하여 사용하는
+    디자인 패턴으로 서로 다른 유사한 컴포넌트가 있을 때, 구성요소의 대부분을 동일하게 하고 일부만
+    다르게 하여 중복을 최소화할 때 사용합니다.
+    </p>
+  </div>
+  <h3>팩토리 메소드 패턴</h3>
+  <div>
+    <p>
+    팩토리 메소드 패턴이란 객체 생성 처리를 서브 클래스로 분리하여 처리하도록 캡슐화 패턴입니다.
+    즉, 객체의 생성 코드를 별도의 클래스/메서드로 분리함으로써 객체 생성의 변화에 대비하여 유용하게
+     사용할 수 있습니다.
+    </p>
+    <ul>
+      <li>비슷한 성격의 객체를 인터페이스를 통해 하나로 관리할 수 있습니다.</li>
+      <li>협업시 공통코드를 건드리는 일이 없이 업무를 진행할 수 있습니다.</li>
+      <li>추수 비슷한 유형의 객체가 생성되어도 implement를 통해 쉽게 추가할 수 있습니다.</li>
+    </ul>
+  </div>
+  <h3>전략 패턴</h3>
+  <div>
+    <p>
+    전략 패턴과 팩토리 패턴은 둘 다 캡슐화 패턴으로 상속을 통해 객체를 좀 더 유연하게 사용하는
+    공통점이 있습니다. 사용 방법은 거의 동일하고, 둘을 구분하기 위한 차이점으로는 팩토리 패턴은
+    생성 패턴이고, 전략  패턴은 운영 패턴입니다.
+    </p>
+    <p>
+    쉽게 말해, 팩토리 패턴은 특정 유형의 객체를 만드는 데 사용되고, 전략 패턴은 특정 방식으로 작업을
+    수행하는 데 사용됩니다.
+    </p>
+  </div>
+</div>
+</body>
+</html>

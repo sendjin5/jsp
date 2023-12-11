@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI 달력</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/start/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <style>
+  body { font-family: Arial, Helvetica, sans-serif; }
+  table { font-size: 1em; }
+  .title { color:#11c9fc; font-size:48px;  text-align: center; }
+  .ui-draggable, .ui-droppable { background-position: top; }
+  </style>  
+  <script>
+    $(function(){
+        $("#date1, #date2, #date3").datepicker();
+
+        $("#anim")
+        $( "#anim" ).on( "change", function() {
+        $( "#date2" ).datepicker( "option", "showAnim", $( this ).val() );
+        });
+
+    })
+  </script>
+</head>
+<body>
+<h2 class="title">달력 기능</h2>
+<hr>
+<div class="widget">
+    <div>
+        <label for="date1">달력1</label>
+        <input type="date" id="date1" name="date1">
+    </div>
+<hr>
+<div>
+    <label for="date2">달력2</label>
+    <input type="text" id="date2" name="date2">
+</div>
+<hr>
+<div>
+    <label for="date3">달력3</label>
+    <div id="date3" name="date3">
+</div>
+    <select id="anim">
+        <option value="show">Show (default)</option>
+        <option value="slideDown">Slide down</option>
+        <option value="fadeIn">Fade in</option>
+        <option value="blind">Blind (UI Effect)</option>
+        <option value="bounce">Bounce (UI Effect)</option>
+        <option value="clip">Clip (UI Effect)</option>
+        <option value="drop">Drop (UI Effect)</option>
+        <option value="fold">Fold (UI Effect)</option>
+        <option value="slide">Slide (UI Effect)</option>
+        <option value>None</option>
+    </select>
+</div>
+</body>
+</html>

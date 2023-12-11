@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI 버튼</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/start/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <style>
+  body { font-family: Arial, Helvetica, sans-serif; }
+  table { font-size: 1em; }
+  .title { color:#11c9fc; font-size:48px;  text-align: center; }
+  .ui-draggable, .ui-droppable { background-position: top; }
+  </style>  
+  <script>
+    $(function(){
+        $("button, input[type=button], input[type=submit], input[type=reset], a").button();
+        $("button, input, a").on("click", function(e){
+            e.preventDefault();
+            alert("알림창")
+        })
+    })
+  </script>
+</head>
+<body>
+<h2 class="title">버튼 기능</h2>
+<hr>
+<div class="widget">
+        <button type="button">버튼1</button>
+        <input type="button" value="버튼2">
+        <input type="submit" value="버튼3">
+        <input type="reset" value="버튼4">
+        <a href="">버튼5</a>
+</div>
+</body>
+</html>

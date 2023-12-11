@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI 라디오</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/start/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <style>
+  body { font-family: Arial, Helvetica, sans-serif; }
+  table { font-size: 1em; }
+  .title { color:#11c9fc; font-size:48px;  text-align: center; }
+  .ui-draggable, .ui-droppable { background-position: top; }
+  </style>  
+  <script>
+    $(function(){
+        $(".ra, .ck").checkboxradio();
+        })
+  </script>
+</head>
+<body>
+<h2 class="title">라디오 기능</h2>
+<hr>
+<div class="widget">
+    <fieldset>
+        <legend>라디오 버튼
+            <label for="ra1">라디오1</label>
+            <input type="radio" name="ra" id="ra1" class="ra" checked>
+            <label for="ra2">라디오2</label>
+            <input type="radio" name="ra" id="ra2" class="ra" >
+            <label for="ra3">라디오3</label>
+            <input type="radio" name="ra" id="ra3" class="ra" >
+            <label for="ra4">라디오4</label>
+            <input type="radio" name="ra" id="ra4" class="ra" >
+        </legend>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>체크박스 버튼
+            <label for="ch1">체크박스1</label>
+            <input type="radio" name="ck" id="ch1" class="ck" checked>
+            <label for="ch2">체크박스2</label>
+            <input type="radio" name="ck" id="ch2" class="ck" >
+            <label for="ch3">체크박스3</label>
+            <input type="radio" name="ck" id="ch3" class="ck" >
+            <label for="ch4">체크박스4</label>
+            <input type="radio" name="ck" id="ch4" class="ck" >
+        </legend>
+    </fieldset>
+
+</div>
+</body>
+</html>
